@@ -1,1 +1,4 @@
-import {mount} from "../components/shared.js";import {initMotion} from "../utils/smoothScroll.js";mount();initMotion();
+import { mount } from "../components/shared.js";
+import { initMotion } from "../utils/smoothScroll.js";
+mount();
+initMotion();

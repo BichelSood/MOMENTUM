@@ -1,1 +1,29 @@
-import "./_init.js";import {events,getEvent} from "../data/events.js";import {getRegistrations,cancelRegistration} from "../utils/storage.js";import {eventDate} from "../utils/date.js";const app=document.querySelector("#app");function render(){const rows=getRegistrations().filter(r=>r.status==="active").map(r=>({...r,event:getEvent(r.eventId)})).filter(r=>r.event).sort((a,b)=>a.event.date.localeCompare(b.event.date));app.innerHTML=`<section class="page-intro"><p class="eyebrow">YOUR PLANS, IN ONE PLACE</p><h1>My <em>Events.</em></h1><p>${rows.length} active ${rows.length===1?"registration":"registrations"} saved in this browser.</p></section>${rows.length?`<div class="my-event-list">${rows.map(r=>`<article class="my-event"><img src="${r.event.image}" alt="${r.event.imageAlt}"><div><p class="eyebrow">${eventDate(r.event)} · ${r.event.city}</p><h2>${r.event.title}</h2><p>${r.event.venue} · Ref ${r.id}</p><span class="status">Active registration</span></div><div class="my-actions"><a class="button secondary" href="event.html?id=${r.event.id}">Details</a><button class="button danger" data-cancel="${r.id}">Cancel</button></div></article>`).join("")}</div>`:`<section class="empty-state"><span>✳</span><h2>Your next good plan starts here.</h2><p>Events you register for in this browser will show up here.</p><a class="button primary" href="explore.html">Explore events ↗</a></section>`}`;document.querySelectorAll("[data-cancel]").forEach(b=>b.onclick=()=>{const r=getRegistrations().find(x=>x.id===b.dataset.cancel);if(!r)return;if(confirm("Cancel this registration? This will free a place in the local demo.")){cancelRegistration(r.id);render()}})}render();
+import "./_init.js";
+import { events, getEvent } from "../data/events.js";
+import { getRegistrations, cancelRegistration } from "../utils/storage.js";
+import { eventDate } from "../utils/date.js";
+const app = document.querySelector("#app");
+function render() {
+  const rows = getRegistrations()
+    .filter((r) => r.status === "active")
+    .map((r) => ({ ...r, event: getEvent(r.eventId) }))
+    .filter((r) => r.event)
+    .sort((a, b) => a.event.date.localeCompare(b.event.date));
+  app.innerHTML = `<section class="page-intro"><p class="eyebrow">YOUR PLANS, IN ONE PLACE</p><h1>My <em>Events.</em></h1><p>${rows.length} active ${rows.length === 1 ? "registration" : "registrations"} saved in this browser.</p></section>${rows.length ? `<div class="my-event-list">${rows.map((r) => `<article class="my-event"><img src="${r.event.image}" alt="${r.event.imageAlt}"><div><p class="eyebrow">${eventDate(r.event)} · ${r.event.city}</p><h2>${r.event.title}</h2><p>${r.event.venue} · Ref ${r.id}</p><span class="status">Active registration</span></div><div class="my-actions"><a class="button secondary" href="event.html?id=${r.event.id}">Details</a><button class="button danger" data-cancel="${r.id}">Cancel</button></div></article>`).join("")}</div>` : `<section class="empty-state"><span>✳</span><h2>Your next good plan starts here.</h2><p>Events you register for in this browser will show up here.</p><a class="button primary" href="explore.html">Explore events ↗</a></section>`}`;
+  document.querySelectorAll("[data-cancel]").forEach(
+    (b) =>
+      (b.onclick = () => {
+        const r = getRegistrations().find((x) => x.id === b.dataset.cancel);
+        if (!r) return;
+        if (
+          confirm(
+            "Cancel this registration? This will free a place in the local demo.",
+          )
+        ) {
+          cancelRegistration(r.id);
+          render();
+        }
+      }),
+  );
+}
+render();
