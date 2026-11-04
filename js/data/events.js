@@ -1,0 +1,22 @@
+const make = (id,title,category,date,startTime,endTime,city,venue,image,shortDescription,capacity=180,featured=false) => ({id,title,category,date,startTime,endTime,timezone:"Asia/Kolkata",city,venue,address:`${venue}, ${city}`,image:`https://images.unsplash.com/${image}?auto=format&fit=crop&w=1400&q=82`,imageAlt:`${category} event atmosphere`,shortDescription,description:`${shortDescription} Join curious people from across ${city} for a thoughtfully planned day of ideas, practical sessions and new connections. This fictional sample event is part of the MOMENTUM local demo.`,organizer:"MOMENTUM Community",capacity,featured,agenda:[{time:startTime,title:"Doors open and welcome"},{time:"11:00",title:"Opening session"},{time:"13:00",title:"Community lunch"},{time:"15:00",title:"Ideas in action"}]});
+export const events=[
+make("EVT001","Future Forward Tech Summit","Technology","2026-12-15","10:00","17:00","Bhubaneswar","Mayfair Convention","photo-1540575467063-178a50c2df87","A day of ideas, innovation and practical technology.",200,true),
+make("EVT002","Buildathon 24","Technology","2026-12-20","09:00","20:00","Bengaluru","The Foundry","photo-1517245386807-bb43f82c33c4","Build useful things with a room full of curious makers."),
+make("EVT003","UI/UX Design Lab","Arts","2027-01-08","10:00","16:00","Pune","Studio Kothrud","photo-1558655146-9f40138edfeb","A hands-on workshop for better digital experiences."),
+make("EVT004","Afterglow Music Festival","Music","2027-01-16","17:00","22:00","Goa","Baga Open Grounds","photo-1459749411175-04bf5292ceea","An evening of independent artists and open-air sound.",500),
+make("EVT005","Indie Nights Live","Music","2027-01-22","18:30","22:00","Mumbai","The Dockyard","photo-1501386761578-eac5c94b800a","Discover emerging voices on an intimate live stage."),
+make("EVT006","Startup Connect","Business","2027-02-03","10:00","16:30","Hyderabad","T-Hub Forum","photo-1511795409834-ef04bbd61622","A practical day for founders, operators and early teams."),
+make("EVT007","Product Leaders Forum","Business","2027-02-12","09:30","17:00","Bengaluru","Taj MG Road","photo-1517245386807-bb43f82c33c4","Honest conversations on building products people need."),
+make("EVT008","City Football Cup","Sports","2027-02-20","08:00","17:00","Kolkata","Salt Lake Training Ground","photo-1522778119026-d647f0596c20","A friendly community tournament for local teams."),
+make("EVT009","Campus Run","Sports","2027-03-07","06:30","10:30","Chennai","Marina Promenade","photo-1533561052604-c3beb6d55b8d","Start your morning with a welcoming 5K community run."),
+make("EVT010","The Creative Canvas","Arts","2027-03-14","11:00","18:00","Jaipur","Jawahar Kala Kendra","photo-1531058020387-3be344556be6","Meet local makers and explore a lively creative showcase."),
+make("EVT011","Rhythm & Roots","Cultural","2027-03-21","16:00","21:00","Bhubaneswar","Rabindra Mandap","photo-1506157786151-b8491531f063","An evening celebrating movement, music and shared heritage."),
+make("EVT012","Spring Cultural Fest","Cultural","2027-04-04","12:00","20:00","Delhi","Sunder Nursery","photo-1514525253161-7a46d19cd819","A relaxed day of food, performance and community arts."),
+make("EVT013","Climate Ideas Exchange","Technology","2027-04-18","10:00","16:00","Kochi","Maker Village","photo-1475721027785-f74eccf877e2","Practical conversations about technology and a changing climate."),
+make("EVT014","Night Market Sessions","Music","2027-05-01","17:30","22:00","Pune","Koregaon Park Commons","photo-1514525253161-7a46d19cd819","Street food, local crafts and live music in one evening."),
+make("EVT015","Designing Better Cities","Business","2027-05-15","09:30","16:00","Ahmedabad","CEPT Auditorium","photo-1497366754035-f200968a6e72","A cross-disciplinary forum on more welcoming public places.")
+];
+export const categories=["Technology","Music","Business","Sports","Arts","Cultural"];
+export const getEvent=id=>events.find(e=>e.id===id);
+export const upcomingEvents=(now=new Date())=>events.filter(e=>new Date(`${e.date}T${e.startTime}:00+05:30`)>now);
+export const featuredEvent=events.find(e=>e.featured);

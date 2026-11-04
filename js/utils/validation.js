@@ -1,0 +1,1 @@
+export function validatePhone(value){const digits=value.replace(/\D/g,"").replace(/^91(?=\d{10}$)/,"");return /^[6-9]\d{9}$/.test(digits)?digits:null} export function validateEmail(value){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())}
