@@ -1,26 +1,50 @@
-# MOMENTUM — Event Discovery & Management
+# MOMENTUM
 
-A responsive, multi-page event discovery and registration demo built with HTML, CSS and vanilla JavaScript modules. All listings are fictional sample events. Registrations are stored locally in the current browser.
+A premium, responsive event discovery and registration demo built with React, Vite, Tailwind CSS v4, and JavaScript. It uses fictional sample listings and stores registrations only in the current browser.
 
 ## Features
-- Explore 15 sample events across six categories and multiple Indian cities.
-- Search, category, date, city and sorting filters with URL state.
-- Event details, agenda, local capacity and countdown.
-- Validated registration with duplicate checks and browser Local Storage.
-- My Events with cancellation; dark and light themes.
-- Responsive layouts and reduced-motion-aware reveal effects.
+
+- Cinematic homepage, editorial event cards, six event categories, and 15 fictional events in Indian cities.
+- React Router routes for Home, Explore, event details, registration, My Events, and Not Found.
+- Search, category, date, city, sort, URL filter state, and useful empty results.
+- Countdown, agenda, local capacity display, registration validation, duplicate prevention, reference numbers, cancellation, and Local Storage persistence.
+- Dark and light themes, responsive navigation, accessible custom desktop cursor, Lenis inertial scrolling, GSAP transitions/reveals, scroll progress, and back-to-top.
+- Reduced-motion and coarse-pointer fallbacks.
 
 ## Run locally
-From this directory, run `python3 -m http.server 8000` and open http://localhost:8000. ES modules require an HTTP server.
 
-## Structure
-`index.html`, `explore.html`, `event.html`, `register.html`, `my-events.html`; shared styles in `css/`; data, components, page scripts and utilities in `js/`.
+Requirements: Node.js 20.19+ or 22.12+.
 
-## Storage and limitations
-`momentum-theme` stores the theme and `momentum-registrations` stores registrations in localStorage. Data is browser-specific and is not synchronized. This frontend demo has no backend, authentication, email delivery, payment processing or authoritative inventory. Do not use real personal data.
+    npm install
+    npm run dev
 
-## Credits
-Event photos are served from Unsplash. Fonts: DM Sans and Space Grotesk via Google Fonts.
+Create a production build and serve it locally:
+
+    npm run build
+    npm run preview
+
+## Stack
+
+Vite, React, JavaScript ES6+, Tailwind CSS v4 with the official Vite plugin, React Router DOM, GSAP, Lenis, Lucide React, and browser Local Storage.
+
+## Project structure
+
+- src/assets/
+- src/components/
+- src/context/
+- src/data/events.js
+- src/hooks/
+- src/pages/
+- src/utils/
+- src/App.jsx, src/index.css, src/main.jsx
+- public/favicon.svg
+
+## Local data and limitations
+
+The momentum-theme key stores the selected theme. The momentum-registrations key stores registration details in localStorage on this device and browser. This is a frontend educational demo, not a secure booking service: there is no backend, account system, email or SMS delivery, payment processing, or authoritative seat inventory. Do not enter sensitive or real participant details.
+
+Listings are fictional and should not be treated as verified event announcements. Photography is served from Unsplash; typography uses Inter and Space Grotesk from Google Fonts.
 
 ## Deployment
-Static-host ready (Netlify, Vercel or GitHub Pages). Live deployment and public repository links are not configured yet.
+
+Build with `npm run build`, then publish the `dist` folder. The included `netlify.toml` configures that build and rewrites client routes to `index.html` for React Router. No public repository or deployed URL is configured yet.
